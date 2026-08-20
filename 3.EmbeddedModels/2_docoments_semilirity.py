@@ -15,7 +15,7 @@ docoments = [
     "Inzamam-ul-Haq: Batsman, Captain, Right-handed"
 ]
 
-query = "tell me about shahid afridi "
+query = "tell me about Babar Azam"
 
 doc_embeddings = embedding.embed_documents(docoments)
 
@@ -23,4 +23,8 @@ query_embedding = embedding.embed_query(query)
 
 scores = cosine_similarity([query_embedding], doc_embeddings)
 
-print(list(enumerate(scores)))
+index, score = sorted(list(enumerate(scores)),key=lambda x: x[1], reverse=True)[-1]
+
+print(query)
+print(docoments[index])
+print("similarity score is : ", score)
